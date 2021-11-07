@@ -1,0 +1,91 @@
+/*
+ * Created by Onkar Nene on 17/8/19 2:09 PM
+ *
+ * Copyright (c) 2019 Onkar Nene. All rights reserved.
+ */
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+	
+	compileSdkVersion compile_sdk_version
+	
+	/** Default configuration for any build type. */
+	defaultConfig {
+		applicationId "com.onkar.android.gojekdemo"
+		minSdkVersion min_sdk_version
+		targetSdkVersion target_sdk_version
+		versionCode version_code
+		versionName version_name
+		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+		multiDexEnabled true
+		vectorDrawables.useSupportLibrary true
+	}
+	
+	/** List of all build types which is supported by app module. */
+	buildTypes {
+		release {
+			minifyEnabled false
+			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+		}
+	}
+	
+	/** Support for Java 8. */
+	compileOptions {
+		targetCompatibility JavaVersion.VERSION_1_8
+		sourceCompatibility JavaVersion.VERSION_1_8
+	}
+	
+	lintOptions {
+		abortOnError false
+	}
+}
+
+/** List of all support and third-party dependencies for the app module. */
+dependencies {
+	implementation fileTree(dir: 'libs', include: ['*.jar'])
+	
+	// Kotlin, support & design libraries
+	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlin_version}"
+	implementation "androidx.appcompat:appcompat:${appcompat_version}"
+	implementation "androidx.core:core-ktx:${core_ktx_version}"
+	implementation "androidx.constraintlayout:constraintlayout:${constraint_layout_version}"
+	implementation "org.jetbrains.anko:anko:${anko_version}"
+	implementation "androidx.recyclerview:recyclerview:${recycler_view_version}"
+	implementation "androidx.cardview:cardview:${card_view_version}"
+	implementation "androidx.annotation:annotation:${annotation_version}"
+	implementation "com.google.android.material:material:${material_version}"
+	implementation "androidx.lifecycle:lifecycle-extensions:${lifecycle_extensions_version}"
+	implementation "androidx.multidex:multidex:${multidex_version}"
+	
+	// Testing
+	testImplementation "junit:junit:${junit_version}"
+	androidTestImplementation "androidx.test.ext:junit:${test_runner_version}"
+	androidTestImplementation "androidx.test.espresso:espresso-core:${espresso_core_version}"
+	
+	// Network
+	implementation "com.squareup.retrofit2:retrofit:${retrofit_version}"
+	implementation "com.squareup.retrofit2:converter-gson:${retrofit_version}"
+	
+	// Gson - Java serialization/deserialization
+	implementation "com.google.code.gson:gson:${gson_version}"
+	
+	// Dependency injection
+	implementation "com.google.dagger:dagger:${dagger_version}"
+	kapt "com.google.dagger:dagger-compiler:${dagger_version}"
+	
+	// Image loading
+	implementation "com.github.bumptech.glide:glide:${glide_version}"
+	kapt "com.github.bumptech.glide:compiler:${glide_version}"
+	
+	// Skeleton loading
+	implementation "com.ethanhua:skeleton:${skeleton_version}"
+	implementation "io.supercharge:shimmerlayout:${shimmer_layout_version}"
+	
+	// Room
+	implementation "androidx.room:room-runtime:${room_version}"
+	kapt "androidx.room:room-compiler:${room_version}"
+}
